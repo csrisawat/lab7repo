@@ -1,0 +1,13 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: <TASK_DEFINITION_ARN> # This will be replaced by CodeDeploy with the new task definition ARN
+        LoadBalancerInfo:
+          ContainerName: lab7-webapp # The name of your container in the Task Definition
+          ContainerPort: 80 # The port your container exposes
+        # Optional: Add any desired CodeDeploy hooks here.
+        # Hooks:
+        #   BeforeInstall: BeforeInstallHookFunction
+        #   AfterAllowTraffic: AfterAllowTrafficHookFunction
