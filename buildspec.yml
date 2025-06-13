@@ -24,3 +24,4 @@ phases:
 artifacts:
   files:
     - imagedefinitions.json # This artifact is passed to CodeDeploy
+    - appspec.yaml
