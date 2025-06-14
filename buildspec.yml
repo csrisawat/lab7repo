@@ -18,15 +18,17 @@ phases:
       - docker push $ECR_REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
       - docker push $ECR_REPOSITORY_URI:latest
       - echo Writing image definitions file...
-      # This file is crucial for CodeDeploy to know which image to deploy
-      #- printf '[{"name":"lab7-webapp","image":"%s"}]' $ECR_REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION > imagedefinitions.json
-      #- printf '[{"name":"lab7-webapp","imageUri":"%s","image":"%s"}]' "$ECR_REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION" "$ECR_REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION" > imagedefinitions.json
-      - printf '[{"name":"lab7-webapp","imageUri":"%s","image":"%s"}]' "$ECR_REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION" "$ECR_REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION" > imagedefinitions.json    
-      - echo "--- Contents of imagedefinitions.json ---"
+      - printf '[{"name":"lab7-webapp","imageUri":"%s"}]' $ECR_REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION > imagedefinitions.json
+      - echo "--- Verifying imagedefinitions.json ---"
+      - ls -l imagedefinitions.json
       - cat imagedefinitions.json
-      - echo "--- End of imagedefinitions.json ---"
+      - echo "--- End of verification ---"
+      # IMPORTANT: Ensure your taskdef.json is in your source repo for this to work
+      # Or, dynamically generate/update it if necessary
+      - cp taskdef.json taskdef_output.json # Copy your base taskdef.json to a new name if needed
 
 artifacts:
   files:
-    - imagedefinitions.json # This artifact is passed to CodeDeploy
+    - imagedefinitions.json
     - appspec.yaml
+    - taskdef_output.json # Added: Include the Task Definition file in the artifact
