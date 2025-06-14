@@ -1,0 +1,37 @@
+{
+  "family": "lab7-task", # This should match your existing task definition family name
+  "networkMode": "awsvpc", # Required for Fargate launch type
+  "cpu": "512", # Match your task's CPU
+  "memory": "1024", # Match your task's Memory (in MiB)
+  "executionRoleArn": "arn:aws:iam::689697613382:role/ecsTaskExecutionRole", # Replace with your actual ARN
+  "taskRoleArn": "arn:aws:iam::689697613382:role/lab7-task-role", # OPTIONAL: Only if your container needs AWS API permissions, replace with your actual ARN or remove
+  "containerDefinitions": [
+    {
+      "name": "lab7-webapp", # <-- THIS MUST EXACTLY MATCH ContainerName in appspec.yaml
+                              #     and 'name' in imagedefinitions.json
+      "image": "IMAGE",       # <-- THIS IS THE PLACEHOLDER. CodeDeploy will replace this.
+      "cpu": 256,             # CPU for this specific container
+      "memory": 512,            # Memory (in MiB) for this specific container
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 80, # <-- THIS MUST MATCH ContainerPort in appspec.yaml
+          "hostPort": 80,
+          "protocol": "tcp"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/lab7-webapp", # Your CloudWatch Log Group
+          "awslogs-region": "ap-southeast-1", # Your AWS Region
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+    # Add other container definitions here if you have more than one in your task
+  ],
+  "requiresCompatibilities": [
+    "FARGATE" # Or "EC2" if you're not using Fargate
+  ]
+}
