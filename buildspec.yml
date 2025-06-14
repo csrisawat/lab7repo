@@ -25,10 +25,7 @@ phases:
       - echo "--- End of verification ---"
       # IMPORTANT: Ensure your taskdef.json is in your source repo for this to work
       # Or, dynamically generate/update it if necessary
-      - cp taskdef.json taskdef_output.json # Copy your base taskdef.json to a new name if needed
 
 artifacts:
   files:
     - imagedefinitions.json
-    - appspec.yaml
-    - taskdef_output.json # Added: Include the Task Definition file in the artifact
