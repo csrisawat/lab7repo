@@ -19,7 +19,8 @@ phases:
       - docker push $ECR_REPOSITORY_URI:latest
       - echo Writing image definitions file...
       # This file is crucial for CodeDeploy to know which image to deploy
-      - printf '[{"name":"lab7-webapp","imageUri":"%s","image":"%s"}]' $ECR_REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION > imagedefinitions.json
+      # - printf '[{"name":"lab7-webapp","imageUri":"%s","image":"%s"}]' $ECR_REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION > imagedefinitions.json
+      - printf '[{"name":"lab7-webapp","imageUri":"%s","image":"%s"}]' "$ECR_REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION" "$ECR_REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION" > imagedefinitions.json
       - echo "--- Contents of imagedefinitions.json ---"
       - cat imagedefinitions.json
       - echo "--- End of imagedefinitions.json ---"
