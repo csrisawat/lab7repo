@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: <TASK_DEFINITION> # This will be replaced by CodeDeploy with the new task definition ARN
+        TaskDefinition: <TASK_DEFINITION_ARN> # This will be replaced by CodeDeploy with the new task definition ARN
         #TaskDefinition: <TASK_DEFINITION_ARN> # This will be replaced by CodeDeploy with the new task definition ARN
 
         LoadBalancerInfo:
