@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "lab7-webapp",
-            "image": "IMAGE",
+            "image": "<IMAGE>",
             "cpu": 0,
             "portMappings": [
                 {
