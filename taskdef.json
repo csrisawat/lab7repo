@@ -81,4 +81,10 @@
     "registeredAt": "2025-06-15T11:30:33.050Z",
     "registeredBy": "arn:aws:iam::689697613382:root",
     "enableFaultInjection": false,
+    "tags": [
+                {
+            "key": "env",
+            "value": "prd"
+        }
+    ]
 }
