@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:689697613382:task-definition/lab7-task:7",
+    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:689697613382:task-definition/lab7-task-pipeline:1",
     "containerDefinitions": [
         {
             "name": "lab7-webapp",
@@ -7,7 +7,7 @@
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "lab7-webapp-80-tcp",
+                    "name": "lab7-webapp-80-port",
                     "containerPort": 80,
                     "hostPort": 80,
                     "protocol": "tcp",
@@ -23,7 +23,7 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/lab7-task",
+                    "awslogs-group": "/ecs/lab7-task-pipeline",
                     "mode": "non-blocking",
                     "awslogs-create-group": "true",
                     "max-buffer-size": "25m",
@@ -35,10 +35,10 @@
             "systemControls": []
         }
     ],
-    "family": "lab7-task",
+    "family": "lab7-task-pipeline",
     "executionRoleArn": "arn:aws:iam::689697613382:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 7,
+    "revision": 1,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -78,11 +78,11 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2025-06-15T11:30:33.050Z",
+    "registeredAt": "2025-06-16T08:45:57.349Z",
     "registeredBy": "arn:aws:iam::689697613382:root",
     "enableFaultInjection": false,
     "tags": [
-                {
+        {
             "key": "env",
             "value": "prd"
         }
